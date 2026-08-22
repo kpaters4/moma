@@ -4,6 +4,7 @@ import re
 from pathlib import Path
 
 import pandas as pd
+import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
 
@@ -27,7 +28,7 @@ def style_fig(fig: go.Figure, *, showlegend: bool = False) -> go.Figure:
         paper_bgcolor=SURFACE,
         plot_bgcolor=SURFACE,
         font=dict(family="system-ui, -apple-system, 'Segoe UI', sans-serif", color=INK_SECONDARY, size=13),
-        title_font=dict(color=INK_PRIMARY, size=16),
+        title=dict(text=fig.layout.title.text or "", font=dict(color=INK_PRIMARY, size=16)),
         margin=dict(l=10, r=10, t=50, b=10),
         showlegend=showlegend,
         legend=dict(bgcolor="rgba(0,0,0,0)", font=dict(color=INK_SECONDARY)),
@@ -135,30 +136,33 @@ c4.metric("Classifications", f"{fdf['Classification'].nunique():,}")
 year_span = fdf["CreationYear"].dropna()
 c5.metric("Creation year span", f"{int(year_span.min())}–{int(year_span.max())}" if not year_span.empty else "N/A")
 
-tab_overview, tab_categories, tab_artists, tab_time, tab_dimensions, tab_explorer = st.tabs(
-    ["Overview", "Categories", "Artists & Nationality", "Time Trends", "Dimensions", "Data Explorer"]
+tab_overview, tab_categories, tab_mediums, tab_artists, tab_time, tab_dimensions, tab_explorer = st.tabs(
+    ["Overview", "Categories", "Mediums", "Artists & Nationality", "Time Trends", "Dimensions", "Data Explorer"]
 )
 
 # ----------------------------- Overview tab -----------------------------
 with tab_overview:
-    st.subheader("Missing data by column")
-    core_cols = [
-        "Title", "Artist", "Nationality", "Gender", "Date", "Medium", "Dimensions",
-        "CreditLine", "Classification", "Department", "DateAcquired",
-        "Height (cm)", "Width (cm)", "Weight (kg)",
-    ]
-    missing = fdf[core_cols].isna().mean().sort_values(ascending=True) * 100
-    missing = missing[missing > 0]
-    if missing.empty:
-        st.info("No missing values in the current selection.")
-    else:
-        fig = go.Figure(go.Bar(
-            x=missing.values, y=missing.index, orientation="h",
-            marker_color=SEQUENTIAL_BLUE[3],
-            hovertemplate="%{y}: %{x:.1f}%% missing<extra></extra>",
-        ))
-        fig.update_layout(title="Share of missing values per column", xaxis_title="% missing", yaxis_title="")
-        st.plotly_chart(style_fig(fig), width="stretch")
+    st.subheader("Collection composition")
+    top_classes = fdf["Classification"].value_counts().head(9).index
+    tree_df = fdf.assign(
+        ClassGroup=fdf["Classification"].where(fdf["Classification"].isin(top_classes), "Other")
+    )
+    grouped = tree_df.groupby(["Department", "ClassGroup"]).size().reset_index(name="Count")
+    grouped = grouped[grouped["Count"] > 0]
+
+    fig = px.treemap(
+        grouped, path=["Department", "ClassGroup"], values="Count",
+        color="Department", color_discrete_sequence=CATEGORICAL,
+    )
+    fig.update_traces(
+        hovertemplate="%{label}<br>%{value:,} artworks<extra></extra>",
+        marker=dict(line=dict(color=SURFACE, width=2)),
+    )
+    st.plotly_chart(style_fig(fig), width="stretch")
+    st.caption(
+        "Box size = number of artworks. Each department (outer color) is split into its most "
+        "common classifications; rarer ones are grouped as \"Other\"."
+    )
 
     st.subheader("Numeric dimension summary")
     dim_cols = ["Height (cm)", "Width (cm)", "Depth (cm)", "Weight (kg)"]
@@ -212,6 +216,41 @@ with tab_categories:
         )
     fig.update_layout(barmode="stack", xaxis_title="Artworks", yaxis_title="", legend_title_text="Gender")
     st.plotly_chart(style_fig(fig, showlegend=True), width="stretch")
+
+# ----------------------------- Mediums tab -----------------------------
+with tab_mediums:
+    st.subheader("Top 20 mediums by number of works")
+    counts = fdf["Medium"].dropna().value_counts().head(20).sort_values(ascending=True)
+    fig = go.Figure(go.Bar(
+        x=counts.values, y=counts.index, orientation="h",
+        marker_color=SEQUENTIAL_BLUE[3],
+        hovertemplate="%{y}: %{x:,} artworks<extra></extra>",
+    ))
+    fig.update_layout(xaxis_title="Artworks", yaxis_title="")
+    st.plotly_chart(style_fig(fig), width="stretch")
+    with st.expander("View as table"):
+        st.dataframe(counts.sort_values(ascending=False).rename("Artworks"), width="stretch")
+
+    st.subheader("Growing diversity of mediums over time")
+    medium_df = fdf.dropna(subset=["Medium", "CreationYear"]).copy()
+    medium_df["Decade"] = (medium_df["CreationYear"] // 10 * 10).astype(int)
+    decade_stats = medium_df.groupby("Decade").agg(
+        distinct_mediums=("Medium", "nunique"),
+        artworks=("Medium", "size"),
+    )
+    decade_stats = decade_stats[decade_stats["artworks"] >= 20]
+    fig = go.Figure(go.Scatter(
+        x=decade_stats.index, y=decade_stats["distinct_mediums"], mode="lines+markers",
+        line=dict(color=SEQUENTIAL_BLUE[4], width=2), marker=dict(size=6),
+        hovertemplate="%{x}s: %{y:,} distinct mediums<extra></extra>",
+    ))
+    fig.update_layout(xaxis_title="Decade created", yaxis_title="Distinct mediums used")
+    st.plotly_chart(style_fig(fig), width="stretch")
+    st.caption(
+        "Distinct exact Medium text values per decade (decades with fewer than 20 dated, "
+        "medium-tagged artworks omitted). Reflects both real material diversity and "
+        "increasingly detailed cataloging in later decades."
+    )
 
 # ----------------------------- Artists & Nationality tab -----------------------------
 with tab_artists:

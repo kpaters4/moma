@@ -21,8 +21,11 @@ This opens the app at `http://localhost:8501`.
 
 ## What's in the app
 
-- **Overview** — missing-data profile and summary stats for physical dimensions
+- **Overview** — a treemap of collection composition (department → top
+  classifications) and summary stats for physical dimensions
 - **Categories** — artworks by department/classification, gender mix by department
+- **Mediums** — top mediums by number of works, and the growing diversity of
+  distinct mediums used per decade
 - **Artists & Nationality** — top artists, top nationalities, gender breakdown
 - **Time Trends** — acquisitions per year, artworks created per decade
 - **Dimensions** — height/width/weight distributions, a height-vs-width scatter
@@ -31,3 +34,26 @@ This opens the app at `http://localhost:8501`.
 
 Sidebar filters (department, classification, artist gender, nationality, creation
 year range) apply across every tab.
+
+## Screenshots
+
+**Overview**
+![Overview tab](docs/screenshots/overview.jpg)
+
+**Categories**
+![Categories tab](docs/screenshots/categories.jpg)
+
+**Mediums**
+![Mediums tab](docs/screenshots/mediums.jpg)
+
+**Artists & Nationality**
+![Artists & Nationality tab](docs/screenshots/artists_nationality.jpg)
+
+**Time Trends**
+![Time Trends tab](docs/screenshots/time_trends.jpg)
+
+**Dimensions**
+![Dimensions tab](docs/screenshots/dimensions.jpg)
+
+**Data Explorer**
+![Data Explorer tab](docs/screenshots/data_explorer.jpg)
