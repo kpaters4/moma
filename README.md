@@ -3,6 +3,8 @@
 A Streamlit app for exploring The Museum of Modern Art's public art collection
 dataset (`data/Artworks.csv`, ~157k artworks).
 
+**Live app:** [moma-eda.streamlit.app](https://moma-eda.streamlit.app)
+
 ## Setup
 
 Requires [uv](https://docs.astral.sh/uv/).
