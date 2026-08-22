@@ -5,7 +5,7 @@ dataset (`data/Artworks.csv`, ~157k artworks).
 
 **Data Source:** [MoMA Art Collection Dataset](https://www.kaggle.com/datasets/lalit7881/the-museum-of-modern-art-moma-collection)
 
-**Live app:** [moma-eda.streamlit.app](https://moma-eda.streamlit.app)
+**Live App:** [moma-eda.streamlit.app](https://moma-eda.streamlit.app)
 
 ## Setup
 
