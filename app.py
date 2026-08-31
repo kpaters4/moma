@@ -149,10 +149,19 @@ sel_nationalities = st.sidebar.multiselect(
     "Nationality (top 30 shown)", top_nationalities, default=[]
 )
 
-year_min, year_max = int(df["CreationYear"].min()), int(df["CreationYear"].max())
-sel_year_range = st.sidebar.slider(
-    "Creation year", min_value=year_min, max_value=year_max, value=(year_min, year_max)
-)
+creation_years = df["CreationYear"].dropna()
+if creation_years.empty:
+    year_min = year_max = None
+    sel_year_range = None
+else:
+    year_min, year_max = int(creation_years.min()), int(creation_years.max())
+    if year_min == year_max:
+        st.sidebar.caption(f"All artworks are dated {year_min}.")
+        sel_year_range = (year_min, year_max)
+    else:
+        sel_year_range = st.sidebar.slider(
+            "Creation year", min_value=year_min, max_value=year_max, value=(year_min, year_max)
+        )
 
 st.sidebar.caption("Rows with an unrecognized creation year are excluded once this filter is touched.")
 
@@ -165,7 +174,7 @@ if sel_genders:
     mask &= df["Gender_Primary"].isin(sel_genders)
 if sel_nationalities:
     mask &= df["Nationality_Primary"].isin(sel_nationalities)
-if sel_year_range != (year_min, year_max):
+if sel_year_range is not None and sel_year_range != (year_min, year_max):
     mask &= df["CreationYear"].between(*sel_year_range)
 
 fdf = df[mask]
