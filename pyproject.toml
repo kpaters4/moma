@@ -11,5 +11,10 @@ dependencies = [
     "streamlit>=1.62.0",
 ]
 
+[dependency-groups]
+dev = [
+    "modal>=1.0.0",
+]
+
 [tool.uv]
 package = false

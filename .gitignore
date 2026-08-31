@@ -216,3 +216,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Modal (credentials should live in ~/.modal.toml, never in the repo)
+.modal.toml

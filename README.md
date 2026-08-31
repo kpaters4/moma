@@ -7,6 +7,8 @@ dataset (`data/Artworks.csv`, ~157k artworks).
 
 **Live App:** [moma-eda.streamlit.app](https://moma-eda.streamlit.app)
 
+**Also deployed on Modal:** [kpaters4--moma-eda-run.modal.run](https://kpaters4--moma-eda-run.modal.run)
+
 ## Setup
 
 Requires [uv](https://docs.astral.sh/uv/).
@@ -22,6 +24,26 @@ uv run streamlit run app.py
 ```
 
 This opens the app at `http://localhost:8501`.
+
+## Deploy on Modal
+
+`modal_app.py` packages this app (code, data, and `.streamlit/` theme) into a
+Modal image and serves it with `@modal.web_server`.
+
+```bash
+uv run modal token new     # one-time auth, opens a browser login
+uv run modal serve modal_app.py     # ephemeral preview, live-reloads on changes
+uv run modal deploy modal_app.py    # persistent deployment, prints the public URL
+```
+
+Modal credentials are stored in `~/.modal.toml` (outside the repo) and must
+never be committed — don't paste API tokens into code, config files, or
+commit messages. `.gitignore` blacklists a stray `.modal.toml`/`.env` as a
+backstop, but the token should simply never end up in a repo-tracked file.
+
+> **Windows note:** set `PYTHONUTF8=1` before running `modal` commands, or the
+> CLI's checkmark/emoji output can crash with a `charmap` codec error in
+> consoles that default to a non-UTF-8 codepage.
 
 ## What's in the app
 
