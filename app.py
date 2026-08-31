@@ -1,14 +1,60 @@
 """EDA app for the MoMA art collection dataset."""
 
+import os
 import re
 from pathlib import Path
 
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+import psycopg
 import streamlit as st
 
 DATA_PATH = Path(__file__).parent / "data" / "Artworks.csv"
+
+# (DB column, CSV/DataFrame column) - mirrors scripts/seed_supabase.py's schema.
+SUPABASE_COLUMN_MAP = [
+    ("object_id", "ObjectID"),
+    ("title", "Title"),
+    ("artist", "Artist"),
+    ("constituent_id", "ConstituentID"),
+    ("artist_bio", "ArtistBio"),
+    ("nationality", "Nationality"),
+    ("begin_date", "BeginDate"),
+    ("end_date", "EndDate"),
+    ("gender", "Gender"),
+    ("date", "Date"),
+    ("medium", "Medium"),
+    ("dimensions", "Dimensions"),
+    ("credit_line", "CreditLine"),
+    ("accession_number", "AccessionNumber"),
+    ("classification", "Classification"),
+    ("department", "Department"),
+    ("date_acquired", "DateAcquired"),
+    ("cataloged", "Cataloged"),
+    ("url", "URL"),
+    ("image_url", "ImageURL"),
+    ("on_view", "OnView"),
+    ("circumference_cm", "Circumference (cm)"),
+    ("depth_cm", "Depth (cm)"),
+    ("diameter_cm", "Diameter (cm)"),
+    ("height_cm", "Height (cm)"),
+    ("length_cm", "Length (cm)"),
+    ("weight_kg", "Weight (kg)"),
+    ("width_cm", "Width (cm)"),
+    ("seat_height_cm", "Seat Height (cm)"),
+    ("duration_sec", "Duration (sec.)"),
+]
+
+
+def load_from_supabase(database_url: str) -> pd.DataFrame:
+    select_list = ", ".join(f'{db_col} as "{csv_col}"' for db_col, csv_col in SUPABASE_COLUMN_MAP)
+    with psycopg.connect(database_url) as conn:
+        with conn.cursor() as cur:
+            cur.execute(f"select {select_list} from artworks")
+            rows = cur.fetchall()
+            columns = [csv_col for _, csv_col in SUPABASE_COLUMN_MAP]
+    return pd.DataFrame(rows, columns=columns)
 
 # --- palette (validated categorical order + sequential/diverging ramps) ---
 CATEGORICAL = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#008300", "#4a3aa7", "#e34948"]
@@ -61,7 +107,8 @@ def extract_year(raw: str):
 
 @st.cache_data(show_spinner="Loading and cleaning the MoMA collection dataset...")
 def load_data() -> pd.DataFrame:
-    df = pd.read_csv(DATA_PATH, low_memory=False)
+    database_url = os.environ.get("DATABASE_URL")
+    df = load_from_supabase(database_url) if database_url else pd.read_csv(DATA_PATH, low_memory=False)
 
     df["Gender_Primary"] = df["Gender"].apply(first_paren_value)
     df["Nationality_Primary"] = df["Nationality"].apply(first_paren_value)

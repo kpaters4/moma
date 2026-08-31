@@ -22,16 +22,20 @@ image = (
         "pandas>=3.0.5",
         "numpy>=2.5.2",
         "plotly>=6.9.0",
+        "psycopg[binary]>=3.2",
     )
     .add_local_file(ROOT / "app.py", APP_REMOTE_PATH)
-    .add_local_dir(ROOT / "data", "/root/data")
     .add_local_dir(ROOT / ".streamlit", "/root/.streamlit")
 )
 
 app = modal.App(name="moma-eda", image=image)
 
 
-@app.function(memory=2048, scaledown_window=60 * 5)
+@app.function(
+    memory=2048,
+    scaledown_window=60 * 5,
+    secrets=[modal.Secret.from_name("moma-eda-db")],
+)
 @modal.concurrent(max_inputs=100)
 @modal.web_server(STREAMLIT_PORT, startup_timeout=60)
 def run():

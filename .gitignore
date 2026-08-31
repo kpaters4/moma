@@ -219,3 +219,6 @@ __marimo__/
 
 # Modal (credentials should live in ~/.modal.toml, never in the repo)
 .modal.toml
+
+# Supabase CLI local link/cache state
+supabase/.temp/

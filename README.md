@@ -27,8 +27,9 @@ This opens the app at `http://localhost:8501`.
 
 ## Deploy on Modal
 
-`modal_app.py` packages this app (code, data, and `.streamlit/` theme) into a
-Modal image and serves it with `@modal.web_server`.
+`modal_app.py` packages this app (code and `.streamlit/` theme) into a Modal
+image and serves it with `@modal.web_server`. The deployed app reads its data
+from Supabase (see below) instead of the local CSV.
 
 ```bash
 uv run modal token new     # one-time auth, opens a browser login
@@ -44,6 +45,36 @@ backstop, but the token should simply never end up in a repo-tracked file.
 > **Windows note:** set `PYTHONUTF8=1` before running `modal` commands, or the
 > CLI's checkmark/emoji output can crash with a `charmap` codec error in
 > consoles that default to a non-UTF-8 codepage.
+
+## Data source: Supabase
+
+The full dataset also lives in a Supabase Postgres project (`artworks` table,
+one row per artwork — see `scripts/seed_supabase.py` for the schema and
+loader). `app.py`'s `load_data()` checks for a `DATABASE_URL` env var:
+
+- **Not set** (default, local dev) — reads `data/Artworks.csv` directly, same
+  as before.
+- **Set** — queries Supabase instead. This is how the Modal deployment gets
+  its data; the Modal image no longer bundles the CSV.
+
+The connection string is stored as a Modal Secret (`moma-eda-db`), never in
+the repo:
+
+```bash
+uv run modal secret create moma-eda-db DATABASE_URL=<connection-string>
+```
+
+To re-seed the table after a data refresh, run the loader locally with the
+connection string in the environment (never commit it, never put it in a
+tracked file):
+
+```bash
+DATABASE_URL=<connection-string> uv run python scripts/seed_supabase.py
+```
+
+Use the **session pooler** connection string (`aws-0-<region>.pooler.supabase.com:5432`,
+user `postgres.<project-ref>`) rather than the direct `db.<project-ref>.supabase.co`
+host — the direct host requires IPv6, which Modal's containers don't have.
 
 ## What's in the app
 
