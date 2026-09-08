@@ -9,6 +9,8 @@ dataset (`data/Artworks.csv`, ~157k artworks).
 
 **Also deployed on Modal:** [kpaters4--moma-eda-run.modal.run](https://kpaters4--moma-eda-run.modal.run)
 
+**Vercel Dashboard:** [moma-ebon.vercel.app](https://moma-ebon.vercel.app/)
+
 ## Setup
 
 Requires [uv](https://docs.astral.sh/uv/).
