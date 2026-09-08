@@ -2,7 +2,7 @@
 
 An editorial, Pinterest-style dashboard for browsing The Museum of Modern
 Art's public art collection dataset. Built with Next.js (App Router) and
-shadcn/ui, deployed on Vercel.
+shadcn/ui, deployed on Vercel at https://moma-ebon.vercel.app.
 
 This is a from-scratch reimagining of the Streamlit EDA app at the repo
 root. Both apps read from the **same Supabase Postgres database** the
@@ -35,20 +35,27 @@ directly with the [`postgres`](https://github.com/porsager/postgres) client
 - **`/api/stats`** — the aggregates behind the Insights charts
   (`lib/stats.ts`), same caching.
 
+`lib/db.ts` connects with `prepare: false`, and `getFacets`/`getStats` run
+their several queries as sequential `await`s rather than a `Promise.all` —
+both work around the same issue: Supabase's transaction-mode pooler
+(Supavisor) can hand concurrent pipelined queries on one connection to
+different backends, which confuses `postgres.js`'s response matching and
+hangs the request. Keep new multi-query code in these files sequential.
+
 The raw `artworks` table (seeded by `../scripts/seed_supabase.py`) stores
 CSV-shaped text columns — `gender`, `nationality`, and `date` need cleanup
 (e.g. `gender` looks like `"(male) (male)"` for multi-artist works) before
 they're useful for filtering. Rather than re-deriving that on every
 request, `scripts/migrate-derived-columns.mjs` is a one-time migration that
 adds and backfills `gender_primary`, `nationality_primary`, `creation_year`,
-`decade`, and `acquired_year` columns (plus indexes) — run it once against
-the database:
+`decade`, and `acquired_year` columns (plus indexes, including trigram
+search indexes on `title`/`artist`) — already run once against the live
+database, so a fresh checkout doesn't need to run it. Re-run it only if the
+source data is reloaded via `seed_supabase.py`:
 
 ```bash
 DATABASE_URL=postgresql://... npm run migrate:db
 ```
-
-Re-run it if the source data is reloaded via `seed_supabase.py`.
 
 ## Develop
 
