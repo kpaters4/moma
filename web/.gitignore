@@ -39,3 +39,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+.vercel
+.env*
+
+# un-ignore lib/ - the repo-root .gitignore (Python project) has an
+# unanchored `lib/` rule for virtualenvs that would otherwise also match
+# this app's web/lib/ source directory.
+!/lib/
+!/lib/**
