@@ -222,3 +222,5 @@ __marimo__/
 
 # Supabase CLI local link/cache state
 supabase/.temp/
+.vercel
+.env*
