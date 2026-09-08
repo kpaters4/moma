@@ -30,7 +30,7 @@ export async function GET(request: NextRequest) {
   const yearMinRaw = params.get("yearMin");
   const yearMaxRaw = params.get("yearMax");
 
-  const result = queryArtworks({
+  const result = await queryArtworks({
     q: params.get("q") ?? undefined,
     department: parseList(params.get("department")),
     classification: parseList(params.get("classification")),

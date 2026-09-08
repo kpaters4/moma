@@ -2,10 +2,12 @@
 
 An editorial, Pinterest-style dashboard for browsing The Museum of Modern
 Art's public art collection dataset. Built with Next.js (App Router) and
-shadcn/ui, meant to be deployed on Vercel.
+shadcn/ui, deployed on Vercel.
 
 This is a from-scratch reimagining of the Streamlit EDA app at the repo
-root, using the same underlying dataset (`../data/Artworks.csv`).
+root. Both apps read from the **same Supabase Postgres database** the
+Streamlit/Modal deployment uses (see the root `README.md`'s "Data source:
+Supabase" section) — there's no separate copy of the dataset here.
 
 ## What's here
 
@@ -18,39 +20,62 @@ root, using the same underlying dataset (`../data/Artworks.csv`).
   dataset: composition by department, gender attribution, creation decade
   and acquisition trends, top artists and nationalities.
 
-## Data pipeline
+## Data access
 
-The app doesn't read the CSV at runtime. `scripts/build-dataset.mjs` parses
-`../data/Artworks.csv` once and writes three trimmed JSON files into `data/`:
+Every page fetches from this app's own API routes, which query Postgres
+directly with the [`postgres`](https://github.com/porsager/postgres) client
+(`lib/db.ts`):
 
-- `artworks.json` — every artwork with an image (title, artist, dates,
-  medium, dimensions, credit line, MoMA URL, image URL). Read server-side
-  only, by `app/api/artworks/route.ts`, and filtered/sorted/paginated
-  per-request from an in-memory array.
-- `facets.json` — filter option lists with counts, imported directly by the
-  client-side filter bar.
-- `stats.json` — precomputed aggregates for the Insights page.
+- **`/api/artworks`** — filters, sorts, and paginates the `artworks` table
+  in SQL per request (`lib/data.ts`). The gallery's "Shuffle" is a
+  seed-keyed `ORDER BY md5(object_id || seed)`, so a given seed paginates
+  consistently and a new one reshuffles everything.
+- **`/api/facets`** — filter-dropdown option lists with counts
+  (`lib/facets.ts`), CDN-cached for an hour since they change rarely.
+- **`/api/stats`** — the aggregates behind the Insights charts
+  (`lib/stats.ts`), same caching.
 
-Re-run the build whenever the source CSV changes:
+The raw `artworks` table (seeded by `../scripts/seed_supabase.py`) stores
+CSV-shaped text columns — `gender`, `nationality`, and `date` need cleanup
+(e.g. `gender` looks like `"(male) (male)"` for multi-artist works) before
+they're useful for filtering. Rather than re-deriving that on every
+request, `scripts/migrate-derived-columns.mjs` is a one-time migration that
+adds and backfills `gender_primary`, `nationality_primary`, `creation_year`,
+`decade`, and `acquired_year` columns (plus indexes) — run it once against
+the database:
 
 ```bash
-npm run build:data
+DATABASE_URL=postgresql://... npm run migrate:db
 ```
+
+Re-run it if the source data is reloaded via `seed_supabase.py`.
 
 ## Develop
 
 ```bash
+cp .env.example .env.local   # fill in DATABASE_URL
 npm install
-npm run build:data   # generates data/*.json from ../data/Artworks.csv
 npm run dev
 ```
 
+`DATABASE_URL` is the same connection string used by the Modal deployment —
+use the session or transaction pooler host (not `db.<ref>.supabase.co`,
+which requires IPv6).
+
 ## Deploy
 
-This app is designed to deploy on Vercel with no environment variables or
-external database — the dataset ships as a bundled JSON file. Set the
-project's root directory to `web/` when importing the repo into Vercel.
+Set the Vercel project's **Root Directory** to `web/`. For the database
+connection, either:
 
-`next.config.ts` declares `outputFileTracingIncludes` so `data/artworks.json`
-is included in the `/api/artworks` serverless function; the `/` and
-`/insights` pages are fully static and don't touch that file.
+- Install the [Supabase Vercel integration](https://vercel.com/integrations/supabase)
+  and connect it to this project — it provisions `POSTGRES_URL` (among
+  others) automatically, which `lib/db.ts` reads as a fallback for
+  `DATABASE_URL`. By default the integration only scopes its variables to
+  **Production** — add **Preview** and **Development** too (Project
+  Settings → Environment Variables → edit each `POSTGRES_*`/`SUPABASE_*`
+  row) if you want those environments to hit the database as well.
+- Or add `DATABASE_URL` as a project environment variable yourself
+  (Production, Preview, and Development).
+
+Every page here fetches from API routes at request time, so nothing needs
+database access at build time.

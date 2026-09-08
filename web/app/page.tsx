@@ -1,20 +1,19 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import facetsData from "@/data/facets.json";
 import { FilterBar } from "@/components/filter-bar";
 import { MasonryGrid } from "@/components/masonry-grid";
 import { ArtworkDialog } from "@/components/artwork-dialog";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useArtworks } from "@/hooks/use-artworks";
+import { useFacets } from "@/hooks/use-facets";
 import { EMPTY_FILTERS } from "@/lib/types";
-import type { Artwork, Facets, FilterState } from "@/lib/types";
-
-const facets = facetsData as Facets;
+import type { Artwork, FilterState } from "@/lib/types";
 
 export default function GalleryPage() {
   const [filters, setFilters] = useState<FilterState>(EMPTY_FILTERS);
   const [selected, setSelected] = useState<Artwork | null>(null);
+  const facets = useFacets();
   const { items, total, loading, loadingMore, hasMore, loadMore, reshuffle } =
     useArtworks(filters);
 
@@ -51,13 +50,17 @@ export default function GalleryPage() {
       </section>
 
       <div className="sticky top-16 z-30">
-        <FilterBar
-          facets={facets}
-          filters={filters}
-          onChange={setFilters}
-          onShuffle={reshuffle}
-          resultCount={total}
-        />
+        {facets ? (
+          <FilterBar
+            facets={facets}
+            filters={filters}
+            onChange={setFilters}
+            onShuffle={reshuffle}
+            resultCount={total}
+          />
+        ) : (
+          <div className="h-[57px] border-b border-border bg-background/95" />
+        )}
       </div>
 
       <main className="mx-auto w-full max-w-[1600px] flex-1 px-5 py-6 sm:px-8">

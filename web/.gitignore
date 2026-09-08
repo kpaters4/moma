@@ -48,3 +48,6 @@ next-env.d.ts
 # this app's web/lib/ source directory.
 !/lib/
 !/lib/**
+
+# .env.example documents required vars but holds no secret values
+!.env.example
