@@ -1,0 +1,466 @@
+{
+  "departments": [
+    {
+      "value": "Drawings & Prints",
+      "count": 80420
+    },
+    {
+      "value": "Architecture & Design",
+      "count": 33612
+    },
+    {
+      "value": "Photography",
+      "count": 33608
+    },
+    {
+      "value": "Painting & Sculpture",
+      "count": 4055
+    },
+    {
+      "value": "Media and Performance",
+      "count": 3198
+    },
+    {
+      "value": "Fluxus Collection",
+      "count": 1683
+    },
+    {
+      "value": "Film",
+      "count": 1024
+    },
+    {
+      "value": "Architecture & Design - Image Archive",
+      "count": 30
+    }
+  ],
+  "classifications": [
+    {
+      "value": "Photograph",
+      "count": 34770
+    },
+    {
+      "value": "Print",
+      "count": 32590
+    },
+    {
+      "value": "Illustrated Book",
+      "count": 27834
+    },
+    {
+      "value": "Mies van der Rohe Archive",
+      "count": 16305
+    },
+    {
+      "value": "Drawing",
+      "count": 14234
+    },
+    {
+      "value": "Design",
+      "count": 12307
+    },
+    {
+      "value": "Architecture",
+      "count": 4158
+    },
+    {
+      "value": "Painting",
+      "count": 2430
+    },
+    {
+      "value": "Video",
+      "count": 2420
+    },
+    {
+      "value": "Notebook",
+      "count": 1965
+    },
+    {
+      "value": "Sculpture",
+      "count": 1787
+    },
+    {
+      "value": "Multiple",
+      "count": 1182
+    },
+    {
+      "value": "Periodical",
+      "count": 951
+    },
+    {
+      "value": "Installation",
+      "count": 907
+    },
+    {
+      "value": "Frank Lloyd Wright Archive",
+      "count": 869
+    },
+    {
+      "value": "Audio",
+      "count": 794
+    },
+    {
+      "value": "Unknown",
+      "count": 689
+    },
+    {
+      "value": "Ephemera",
+      "count": 612
+    },
+    {
+      "value": "Work on Paper",
+      "count": 381
+    },
+    {
+      "value": "Film",
+      "count": 150
+    },
+    {
+      "value": "Poster",
+      "count": 93
+    },
+    {
+      "value": "Media",
+      "count": 41
+    },
+    {
+      "value": "Textile",
+      "count": 33
+    },
+    {
+      "value": "Performance",
+      "count": 32
+    },
+    {
+      "value": "Collage",
+      "count": 31
+    },
+    {
+      "value": "Wallpaper",
+      "count": 22
+    },
+    {
+      "value": "Correspondence",
+      "count": 9
+    },
+    {
+      "value": "Graphic Design",
+      "count": 6
+    },
+    {
+      "value": "Photography Research/Reference",
+      "count": 6
+    },
+    {
+      "value": "Furniture and Interiors",
+      "count": 4
+    },
+    {
+      "value": "Publication",
+      "count": 3
+    },
+    {
+      "value": "Digital",
+      "count": 3
+    },
+    {
+      "value": "Software",
+      "count": 3
+    },
+    {
+      "value": "Moving Image",
+      "count": 2
+    },
+    {
+      "value": "Document",
+      "count": 2
+    },
+    {
+      "value": "Film (object)",
+      "count": 2
+    },
+    {
+      "value": "Fashion",
+      "count": 1
+    },
+    {
+      "value": "Architectural Model",
+      "count": 1
+    },
+    {
+      "value": "News Clipping",
+      "count": 1
+    }
+  ],
+  "genders": [
+    {
+      "value": "Male",
+      "count": 127482
+    },
+    {
+      "value": "Female",
+      "count": 20928
+    },
+    {
+      "value": "Unknown",
+      "count": 9205
+    },
+    {
+      "value": "Non-binary",
+      "count": 12
+    },
+    {
+      "value": "Gender Non-conforming",
+      "count": 2
+    },
+    {
+      "value": "Transgender Woman",
+      "count": 1
+    }
+  ],
+  "nationalities": [
+    {
+      "value": "American",
+      "count": 76596
+    },
+    {
+      "value": "French",
+      "count": 23333
+    },
+    {
+      "value": "German",
+      "count": 10079
+    },
+    {
+      "value": "Unknown",
+      "count": 6630
+    },
+    {
+      "value": "British",
+      "count": 6240
+    },
+    {
+      "value": "Spanish",
+      "count": 3199
+    },
+    {
+      "value": "Italian",
+      "count": 3047
+    },
+    {
+      "value": "Japanese",
+      "count": 2674
+    },
+    {
+      "value": "Russian",
+      "count": 2622
+    },
+    {
+      "value": "Swiss",
+      "count": 2350
+    },
+    {
+      "value": "Dutch",
+      "count": 1762
+    },
+    {
+      "value": "Belgian",
+      "count": 1511
+    },
+    {
+      "value": "Mexican",
+      "count": 1510
+    },
+    {
+      "value": "Argentine",
+      "count": 1145
+    },
+    {
+      "value": "Austrian",
+      "count": 1064
+    },
+    {
+      "value": "Brazilian",
+      "count": 946
+    },
+    {
+      "value": "Nationality Unknown",
+      "count": 907
+    },
+    {
+      "value": "Canadian",
+      "count": 891
+    },
+    {
+      "value": "Czech",
+      "count": 797
+    },
+    {
+      "value": "Colombian",
+      "count": 791
+    },
+    {
+      "value": "Hungarian",
+      "count": 687
+    },
+    {
+      "value": "Chilean",
+      "count": 619
+    },
+    {
+      "value": "Danish",
+      "count": 582
+    },
+    {
+      "value": "Polish",
+      "count": 572
+    },
+    {
+      "value": "Venezuelan",
+      "count": 551
+    },
+    {
+      "value": "Ivorian",
+      "count": 483
+    },
+    {
+      "value": "Chinese",
+      "count": 474
+    },
+    {
+      "value": "South African",
+      "count": 441
+    },
+    {
+      "value": "Israeli",
+      "count": 333
+    },
+    {
+      "value": "Swedish",
+      "count": 331
+    },
+    {
+      "value": "Croatian",
+      "count": 274
+    },
+    {
+      "value": "Trinidad And Tobagonian",
+      "count": 269
+    },
+    {
+      "value": "Australian",
+      "count": 260
+    },
+    {
+      "value": "Indian",
+      "count": 257
+    },
+    {
+      "value": "Finnish",
+      "count": 229
+    },
+    {
+      "value": "Cuban",
+      "count": 227
+    },
+    {
+      "value": "Serbian",
+      "count": 204
+    },
+    {
+      "value": "Norwegian",
+      "count": 187
+    },
+    {
+      "value": "Portuguese",
+      "count": 154
+    },
+    {
+      "value": "Peruvian",
+      "count": 139
+    },
+    {
+      "value": "Ukrainian",
+      "count": 130
+    },
+    {
+      "value": "Uruguayan",
+      "count": 105
+    },
+    {
+      "value": "Egyptian",
+      "count": 86
+    },
+    {
+      "value": "Guatemalan",
+      "count": 85
+    },
+    {
+      "value": "Korean",
+      "count": 83
+    },
+    {
+      "value": "Romanian",
+      "count": 81
+    },
+    {
+      "value": "Slovak",
+      "count": 80
+    },
+    {
+      "value": "Puerto Rican",
+      "count": 77
+    },
+    {
+      "value": "Nigerian",
+      "count": 77
+    },
+    {
+      "value": "Latvian",
+      "count": 70
+    },
+    {
+      "value": "Lebanese",
+      "count": 66
+    },
+    {
+      "value": "Greek",
+      "count": 64
+    },
+    {
+      "value": "Costa Rican",
+      "count": 64
+    },
+    {
+      "value": "Sudanese",
+      "count": 64
+    },
+    {
+      "value": "Georgian",
+      "count": 61
+    },
+    {
+      "value": "Scottish",
+      "count": 57
+    },
+    {
+      "value": "Slovenian",
+      "count": 56
+    },
+    {
+      "value": "Icelandic",
+      "count": 55
+    },
+    {
+      "value": "Malaysian",
+      "count": 55
+    },
+    {
+      "value": "Pakistani",
+      "count": 53
+    }
+  ],
+  "yearRange": [
+    1768,
+    2024
+  ]
+}

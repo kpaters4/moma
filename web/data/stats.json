@@ -1,0 +1,753 @@
+{
+  "totalArtworks": 157630,
+  "totalWithImages": 91043,
+  "totalArtists": 14078,
+  "yearRange": [
+    1768,
+    2024
+  ],
+  "departmentCounts": [
+    {
+      "name": "Drawings & Prints",
+      "count": 80420
+    },
+    {
+      "name": "Architecture & Design",
+      "count": 33612
+    },
+    {
+      "name": "Photography",
+      "count": 33608
+    },
+    {
+      "name": "Painting & Sculpture",
+      "count": 4055
+    },
+    {
+      "name": "Media and Performance",
+      "count": 3198
+    },
+    {
+      "name": "Fluxus Collection",
+      "count": 1683
+    },
+    {
+      "name": "Film",
+      "count": 1024
+    },
+    {
+      "name": "Architecture & Design - Image Archive",
+      "count": 30
+    }
+  ],
+  "classificationCounts": [
+    {
+      "name": "Photograph",
+      "count": 34770
+    },
+    {
+      "name": "Print",
+      "count": 32590
+    },
+    {
+      "name": "Illustrated Book",
+      "count": 27834
+    },
+    {
+      "name": "Mies van der Rohe Archive",
+      "count": 16305
+    },
+    {
+      "name": "Drawing",
+      "count": 14234
+    },
+    {
+      "name": "Design",
+      "count": 12307
+    },
+    {
+      "name": "Architecture",
+      "count": 4158
+    },
+    {
+      "name": "Painting",
+      "count": 2430
+    },
+    {
+      "name": "Video",
+      "count": 2420
+    },
+    {
+      "name": "Notebook",
+      "count": 1965
+    }
+  ],
+  "genderCounts": [
+    {
+      "name": "Male",
+      "count": 127482
+    },
+    {
+      "name": "Female",
+      "count": 20928
+    },
+    {
+      "name": "Unknown",
+      "count": 9205
+    },
+    {
+      "name": "Non-binary",
+      "count": 12
+    },
+    {
+      "name": "Gender Non-conforming",
+      "count": 2
+    },
+    {
+      "name": "Transgender Woman",
+      "count": 1
+    }
+  ],
+  "nationalityCounts": [
+    {
+      "name": "American",
+      "count": 76596
+    },
+    {
+      "name": "French",
+      "count": 23333
+    },
+    {
+      "name": "German",
+      "count": 10079
+    },
+    {
+      "name": "Unknown",
+      "count": 6630
+    },
+    {
+      "name": "British",
+      "count": 6240
+    },
+    {
+      "name": "Spanish",
+      "count": 3199
+    },
+    {
+      "name": "Italian",
+      "count": 3047
+    },
+    {
+      "name": "Japanese",
+      "count": 2674
+    },
+    {
+      "name": "Russian",
+      "count": 2622
+    },
+    {
+      "name": "Swiss",
+      "count": 2350
+    },
+    {
+      "name": "Dutch",
+      "count": 1762
+    },
+    {
+      "name": "Belgian",
+      "count": 1511
+    }
+  ],
+  "topArtists": [
+    {
+      "name": "Ludwig Mies van der Rohe",
+      "count": 15491
+    },
+    {
+      "name": "Eugène Atget",
+      "count": 5031
+    },
+    {
+      "name": "Louise Bourgeois",
+      "count": 3336
+    },
+    {
+      "name": "Unidentified photographer",
+      "count": 2742
+    },
+    {
+      "name": "Ellsworth Kelly",
+      "count": 2193
+    },
+    {
+      "name": "Jean Dubuffet",
+      "count": 1436
+    },
+    {
+      "name": "Lee Friedlander",
+      "count": 1320
+    },
+    {
+      "name": "Pablo Picasso",
+      "count": 1314
+    },
+    {
+      "name": "Marc Chagall",
+      "count": 1161
+    },
+    {
+      "name": "Henri Matisse",
+      "count": 1065
+    },
+    {
+      "name": "Pierre Bonnard",
+      "count": 902
+    },
+    {
+      "name": "Frank Lloyd Wright",
+      "count": 878
+    },
+    {
+      "name": "Lilly Reich",
+      "count": 823
+    },
+    {
+      "name": "George Maciunas",
+      "count": 798
+    },
+    {
+      "name": "August Sander",
+      "count": 750
+    }
+  ],
+  "topMediums": [
+    {
+      "name": "Gelatin silver print",
+      "count": 17032
+    },
+    {
+      "name": "Lithograph",
+      "count": 8641
+    },
+    {
+      "name": "Pencil on paper",
+      "count": 7251
+    },
+    {
+      "name": "Albumen silver print",
+      "count": 4837
+    },
+    {
+      "name": "Pencil on tracing paper",
+      "count": 2603
+    },
+    {
+      "name": "Chromogenic print",
+      "count": 1745
+    },
+    {
+      "name": "Letterpress",
+      "count": 1714
+    },
+    {
+      "name": "Etching",
+      "count": 1686
+    },
+    {
+      "name": "Ink on paper",
+      "count": 1574
+    },
+    {
+      "name": "Pencil and colored pencil on paper",
+      "count": 1265
+    },
+    {
+      "name": "Offset lithograph",
+      "count": 1151
+    },
+    {
+      "name": "Oil on canvas",
+      "count": 1071
+    }
+  ],
+  "decadeCounts": [
+    {
+      "decade": 1800,
+      "count": 4
+    },
+    {
+      "decade": 1810,
+      "count": 423
+    },
+    {
+      "decade": 1820,
+      "count": 20
+    },
+    {
+      "decade": 1830,
+      "count": 15
+    },
+    {
+      "decade": 1840,
+      "count": 273
+    },
+    {
+      "decade": 1850,
+      "count": 853
+    },
+    {
+      "decade": 1860,
+      "count": 987
+    },
+    {
+      "decade": 1870,
+      "count": 877
+    },
+    {
+      "decade": 1880,
+      "count": 639
+    },
+    {
+      "decade": 1890,
+      "count": 2820
+    },
+    {
+      "decade": 1900,
+      "count": 5614
+    },
+    {
+      "decade": 1910,
+      "count": 7818
+    },
+    {
+      "decade": 1920,
+      "count": 13118
+    },
+    {
+      "decade": 1930,
+      "count": 13602
+    },
+    {
+      "decade": 1940,
+      "count": 15038
+    },
+    {
+      "decade": 1950,
+      "count": 14853
+    },
+    {
+      "decade": 1960,
+      "count": 23112
+    },
+    {
+      "decade": 1970,
+      "count": 16366
+    },
+    {
+      "decade": 1980,
+      "count": 10714
+    },
+    {
+      "decade": 1990,
+      "count": 10358
+    },
+    {
+      "decade": 2000,
+      "count": 10558
+    },
+    {
+      "decade": 2010,
+      "count": 4409
+    },
+    {
+      "decade": 2020,
+      "count": 606
+    }
+  ],
+  "acquisitionsByYear": [
+    {
+      "year": 1929,
+      "count": 9
+    },
+    {
+      "year": 1930,
+      "count": 7
+    },
+    {
+      "year": 1931,
+      "count": 3
+    },
+    {
+      "year": 1932,
+      "count": 18
+    },
+    {
+      "year": 1933,
+      "count": 93
+    },
+    {
+      "year": 1934,
+      "count": 284
+    },
+    {
+      "year": 1935,
+      "count": 416
+    },
+    {
+      "year": 1936,
+      "count": 146
+    },
+    {
+      "year": 1937,
+      "count": 322
+    },
+    {
+      "year": 1938,
+      "count": 127
+    },
+    {
+      "year": 1939,
+      "count": 398
+    },
+    {
+      "year": 1940,
+      "count": 1583
+    },
+    {
+      "year": 1941,
+      "count": 977
+    },
+    {
+      "year": 1942,
+      "count": 938
+    },
+    {
+      "year": 1943,
+      "count": 1132
+    },
+    {
+      "year": 1944,
+      "count": 346
+    },
+    {
+      "year": 1945,
+      "count": 315
+    },
+    {
+      "year": 1946,
+      "count": 171
+    },
+    {
+      "year": 1947,
+      "count": 475
+    },
+    {
+      "year": 1948,
+      "count": 421
+    },
+    {
+      "year": 1949,
+      "count": 1588
+    },
+    {
+      "year": 1950,
+      "count": 453
+    },
+    {
+      "year": 1951,
+      "count": 631
+    },
+    {
+      "year": 1952,
+      "count": 550
+    },
+    {
+      "year": 1953,
+      "count": 474
+    },
+    {
+      "year": 1954,
+      "count": 881
+    },
+    {
+      "year": 1955,
+      "count": 446
+    },
+    {
+      "year": 1956,
+      "count": 1134
+    },
+    {
+      "year": 1957,
+      "count": 303
+    },
+    {
+      "year": 1958,
+      "count": 705
+    },
+    {
+      "year": 1959,
+      "count": 829
+    },
+    {
+      "year": 1960,
+      "count": 449
+    },
+    {
+      "year": 1961,
+      "count": 552
+    },
+    {
+      "year": 1962,
+      "count": 565
+    },
+    {
+      "year": 1963,
+      "count": 951
+    },
+    {
+      "year": 1964,
+      "count": 12998
+    },
+    {
+      "year": 1965,
+      "count": 2020
+    },
+    {
+      "year": 1966,
+      "count": 1859
+    },
+    {
+      "year": 1967,
+      "count": 2420
+    },
+    {
+      "year": 1968,
+      "count": 19733
+    },
+    {
+      "year": 1969,
+      "count": 2194
+    },
+    {
+      "year": 1970,
+      "count": 1245
+    },
+    {
+      "year": 1971,
+      "count": 1041
+    },
+    {
+      "year": 1972,
+      "count": 862
+    },
+    {
+      "year": 1973,
+      "count": 1101
+    },
+    {
+      "year": 1974,
+      "count": 3394
+    },
+    {
+      "year": 1975,
+      "count": 991
+    },
+    {
+      "year": 1976,
+      "count": 902
+    },
+    {
+      "year": 1977,
+      "count": 1208
+    },
+    {
+      "year": 1978,
+      "count": 1349
+    },
+    {
+      "year": 1979,
+      "count": 1198
+    },
+    {
+      "year": 1980,
+      "count": 680
+    },
+    {
+      "year": 1981,
+      "count": 1347
+    },
+    {
+      "year": 1982,
+      "count": 851
+    },
+    {
+      "year": 1983,
+      "count": 1157
+    },
+    {
+      "year": 1984,
+      "count": 869
+    },
+    {
+      "year": 1985,
+      "count": 1050
+    },
+    {
+      "year": 1986,
+      "count": 1028
+    },
+    {
+      "year": 1987,
+      "count": 1321
+    },
+    {
+      "year": 1988,
+      "count": 1019
+    },
+    {
+      "year": 1989,
+      "count": 891
+    },
+    {
+      "year": 1990,
+      "count": 1274
+    },
+    {
+      "year": 1991,
+      "count": 837
+    },
+    {
+      "year": 1992,
+      "count": 1197
+    },
+    {
+      "year": 1993,
+      "count": 1227
+    },
+    {
+      "year": 1994,
+      "count": 943
+    },
+    {
+      "year": 1995,
+      "count": 988
+    },
+    {
+      "year": 1996,
+      "count": 972
+    },
+    {
+      "year": 1997,
+      "count": 950
+    },
+    {
+      "year": 1998,
+      "count": 1292
+    },
+    {
+      "year": 1999,
+      "count": 1808
+    },
+    {
+      "year": 2000,
+      "count": 1886
+    },
+    {
+      "year": 2001,
+      "count": 4170
+    },
+    {
+      "year": 2002,
+      "count": 635
+    },
+    {
+      "year": 2003,
+      "count": 596
+    },
+    {
+      "year": 2004,
+      "count": 773
+    },
+    {
+      "year": 2005,
+      "count": 4054
+    },
+    {
+      "year": 2006,
+      "count": 1665
+    },
+    {
+      "year": 2007,
+      "count": 2348
+    },
+    {
+      "year": 2008,
+      "count": 7176
+    },
+    {
+      "year": 2009,
+      "count": 1531
+    },
+    {
+      "year": 2010,
+      "count": 2050
+    },
+    {
+      "year": 2011,
+      "count": 1916
+    },
+    {
+      "year": 2012,
+      "count": 2943
+    },
+    {
+      "year": 2013,
+      "count": 3109
+    },
+    {
+      "year": 2014,
+      "count": 2829
+    },
+    {
+      "year": 2015,
+      "count": 3817
+    },
+    {
+      "year": 2016,
+      "count": 1994
+    },
+    {
+      "year": 2017,
+      "count": 1620
+    },
+    {
+      "year": 2018,
+      "count": 2507
+    },
+    {
+      "year": 2019,
+      "count": 2286
+    },
+    {
+      "year": 2020,
+      "count": 2600
+    },
+    {
+      "year": 2021,
+      "count": 920
+    },
+    {
+      "year": 2022,
+      "count": 1218
+    },
+    {
+      "year": 2023,
+      "count": 468
+    },
+    {
+      "year": 2024,
+      "count": 862
+    }
+  ]
+}
